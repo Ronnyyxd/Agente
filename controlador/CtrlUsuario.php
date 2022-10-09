@@ -30,18 +30,21 @@ class CtrlUsuario extends Controlador {
         $this->mostrarVista('Usuario/frmEditar.php',$datos);
     }
     public function guardarEditar(){
-        $id = $_POST["id"];
-        $tipo =$_POST["tipo"];
-        $miTipo = new Usuario($id,$tipo); 
-        $miTipo->editar();
+        $Usuario = new Usuario(
+            $_POST['Id_Usuario'], 
+            $_POST['DNI'],
+            $_POST['nombre'], 
+            $_POST['idTipoUsuario']
+        ); 
+        $Usuario->editar();
 
         $this->index(); // Recargo la Pagina
     }
     public function eliminar(){
-        $id = $_GET["id"];
+        $Id_Usuario = $_GET["id"];
 
-        $tipo = new Usuario($id);
-        $tipo->eliminar();
+        $Usuario = new Usuario($_REQUEST['id']);
+        $Usuario-> eliminar();
 
         $this->index(); // Recargo la Pagina
     }
@@ -51,13 +54,16 @@ class CtrlUsuario extends Controlador {
            
         );
         
-        $this->mostrarVista('TipoUsuario/frmNuevo.php',$datos);
+        $this->mostrarVista('Usuario/frmNuevo.php',$datos);
     }
     public function guardarNuevo(){
-        $id = $_POST["id"];
-        $tipo =$_POST["tipo"];
-        $miTipo = new Usuario($id,$tipo); 
-        $miTipo->nuevo();
+        $Usuario = new Usuario(
+            $_POST['Id_Usuario'], 
+            $_POST['DNI'],
+            $_POST['nombre'], 
+            $_POST['idTipoUsuario']
+        );
+        $Usuario->nuevo();
 
         $this->index(); // Recargo la Pagina
     }
