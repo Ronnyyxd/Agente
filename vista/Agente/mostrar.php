@@ -36,7 +36,7 @@
             href="?ctrl=CtrlAgente&accion=eliminar&id=<?=$c['idAgente']?>">Eliminar</a> </td>
         </tr> <?php } ?>
      
-        <a class="btn btn-primary" href="/Agente" role="button">Atras</a>
+        <a class="btn btn-primary" href="/Agente2" role="button">Atras</a>
     </table>
 </body>
 

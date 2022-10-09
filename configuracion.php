@@ -3,7 +3,7 @@
 error_reporting (E_ALL | E_STRICT);
 /* RUTAS */
 define('HOME', 'c:\xampp\htdocs');
-define('APP_NAME', 'AGENTE');
+define('APP_NAME', 'AGENTE2');
 define('APP', HOME . DIRECTORY_SEPARATOR . APP_NAME );
 
 /* SISTEMA */ 

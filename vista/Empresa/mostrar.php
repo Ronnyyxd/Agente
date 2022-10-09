@@ -35,7 +35,7 @@
             <td> <a href="?ctrl=CtrlEmpresa&accion=editar&id=<?=$c['idEmpresa']?>">Editar</a> / <a
             href="?ctrl=CtrlEmpresa&accion=eliminar&id=<?=$c['idEmpresa']?>">Eliminar</a> </td>
         </tr> <?php } ?>
-        <a href="/Agente">Atrás</a>
+        <a href="/Agente2">Atrás</a>
     </table>
 </body>
 

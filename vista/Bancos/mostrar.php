@@ -29,7 +29,7 @@
             <td> <a href="?ctrl=CtrlBancos&accion=editar&id=<?=$c['idBanco']?>">Editar</a> / <a
             href="?ctrl=CtrlBancos&accion=eliminar&id=<?=$c['idBanco']?>">Eliminar</a> </td>
         </tr> <?php } ?>
-        <a href="/Agente">Atrás</a>
+        <a href="/Agente2">Atrás</a>
     </table>
 </body>
 

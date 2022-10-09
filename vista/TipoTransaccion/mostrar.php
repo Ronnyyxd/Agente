@@ -29,7 +29,7 @@
             <td> <a href="?ctrl=CtrlTipoTransaccion&accion=editar&id=<?=$c['idTipoTransaccion']?>">Editar</a> / <a
             href="?ctrl=CtrlTipoTransaccion&accion=eliminar&id=<?=$c['idTipoTransaccion']?>">Eliminar</a> </td>
         </tr> <?php } ?>
-        <a href="/Agente">Atrás</a>
+        <a href="/Agente2">Atrás</a>
     </table>
 </body>
 
