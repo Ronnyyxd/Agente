@@ -7,8 +7,8 @@ require_once MOD .DIRECTORY_SEPARATOR . 'Agente.php';
 class CtrlAgente extends Controlador {
     
     public function index(){
-        $tipo = new Agente();
-        $misTipos = $tipo->leer();
+        $Agente = new Agente();
+        $misTipos = $Agente->leer();
         
         $datos = array(
             'encabezado'=>"Listado de Agentes",
@@ -19,29 +19,32 @@ class CtrlAgente extends Controlador {
         
     }
     public function editar(){
-        $id = $_GET["id"];
-        $tipo = new Agente($id);
-        $miTipo = $tipo->leerUno();
+        $idAgente = $_GET["id"];
+        $Agente = new Agente($idAgente);
+        $miTipo = $Agente->leerUno();
         $datos = array(
-            'titulo'=>"Editando Tipos de Agente: " . $id,
+            'titulo'=>"Editando Tipos de Agente: " . $idAgente,
             'Agente'=>$miTipo[0]
         );
         
         $this->mostrarVista('Agente/frmEditar.php',$datos);
     }
     public function guardarEditar(){
-        $id = $_POST["id"];
-        $tipo =$_POST["tipo"];
-        $miTipo = new Agente($id,$tipo); 
-        $miTipo->editar();
+        $Agente = new Agente(
+            $_POST['idAgente'], 
+            $_POST['NombreAgente'], 
+            $_POST['direccion'], 
+            $_POST['codigoEquipo']
+        );
+        $Agente->editar();
 
         $this->index(); // Recargo la Pagina
     }
     public function eliminar(){
-        $id = $_GET["id"];
+        $idAgente = $_GET["id"];
 
-        $tipo = new Agente($id);
-        $tipo->eliminar();
+        $Agente = new Agente($idAgente);
+        $Agente->eliminar();
 
         $this->index(); // Recargo la Pagina
     }
@@ -54,10 +57,14 @@ class CtrlAgente extends Controlador {
         $this->mostrarVista('Agente/frmNuevo.php',$datos);
     }
     public function guardarNuevo(){
-        $id = $_POST["idAgente"];
-        $tipo =$_POST["tipo"];
-        $miTipo = new Agente($id,$tipo); 
-        $miTipo->nuevo();
+        $Agente = new Agente(
+            $_POST['idAgente'], 
+            $_POST['NombreAgente'], 
+            $_POST['direccion'], 
+            $_POST['codigoEquipo']
+        );
+        $Agente->nuevo();
+        
 
         $this->index(); // Recargo la Pagina
     }
