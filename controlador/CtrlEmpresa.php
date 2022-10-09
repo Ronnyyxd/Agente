@@ -30,18 +30,22 @@ class CtrlEmpresa extends Controlador {
         $this->mostrarVista('Empresa/frmEditar.php',$datos);
     }
     public function guardarEditar(){
-        $id = $_POST["id"];
-        $tipo =$_POST["tipo"];
-        $miTipo = new Empresa($id,$tipo); 
-        $miTipo->editar();
+        $Empresa = new Empresa(
+            $_POST['idEmpresa'], 
+            $_POST['Giro_rubro'], 
+            $_POST['nroCuenta'], 
+            $_POST['Nombre'],
+            $_POST['codigo'],
+        );
+        $Empresa->editar();
 
         $this->index(); // Recargo la Pagina
     }
     public function eliminar(){
-        $id = $_GET["id"];
+        $idEmpresa = $_GET["id"];
 
-        $tipo = new Empresa($id);
-        $tipo->eliminar();
+        $Empresa = new Empresa($_REQUEST['id']);
+        $Empresa-> eliminar();
 
         $this->index(); // Recargo la Pagina
     }
@@ -54,10 +58,14 @@ class CtrlEmpresa extends Controlador {
         $this->mostrarVista('Empresa/frmNuevo.php',$datos);
     }
     public function guardarNuevo(){
-        $id = $_POST["idEmpresa"];
-        $tipo =$_POST["tipo"];
-        $miTipo = new Empresa($id,$tipo); 
-        $miTipo->nuevo();
+        $Empresa = new Empresa(
+            $_POST['idEmpresa'], 
+            $_POST['Giro_rubro'], 
+            $_POST['nroCuenta'], 
+            $_POST['Nombre'],
+            $_POST['codigo'],
+        ); 
+        $Empresa->nuevo();
 
         $this->index(); // Recargo la Pagina
     }

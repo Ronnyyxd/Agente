@@ -16,7 +16,7 @@
 
 <body>
     <h1><?=$encabezado?></h1>
-    <a href="?ctrl=CtrlUsuario&accion=nuevo">Nuevo Voucher</a>
+    <a href="?ctrl=CtrlVoucher&accion=nuevo">Nuevo Voucher</a>
     <table>
         <tr>
             <th>Id Voucher:</th>
@@ -50,8 +50,8 @@
             <td><?=$c['idAgente']?></td>
             <td><?=$c['idTipoTransaccion']?></td>
             <td><?=$c['idCuenta']?></td>
-            <td> <a href="?ctrl=CtrlUsuario&accion=editar&id=<?=$c['Id_voucher']?>">Editar</a> / <a
-            href="?ctrl=CtrlUsuario&accion=eliminar&id=<?=$c['Id_voucher']?>">Eliminar</a> </td>
+            <td> <a href="?ctrl=CtrlVoucher&accion=editar&id=<?=$c['Id_voucher']?>">Editar</a> / <a
+            href="?ctrl=CtrlVoucher&accion=eliminar&id=<?=$c['Id_voucher']?>">Eliminar</a> </td>
         </tr> <?php } ?>
         <a href="/Agente2">Atrás</a>
     </table>

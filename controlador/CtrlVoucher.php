@@ -30,18 +30,31 @@ class CtrlVoucher extends Controlador {
         $this->mostrarVista('Voucher/frmEditar.php',$datos);
     }
     public function guardarEditar(){
-        $id = $_POST["id"];
-        $tipo =$_POST["tipo"];
-        $miTipo = new Voucher($id,$tipo); 
-        $miTipo->editar();
+        $Voucher = new Voucher(
+            $_POST['Id_voucher'], 
+            $_POST['Fecha'], 
+            $_POST['Hora'], 
+            $_POST['Numero_operacion'],
+            $_POST['Importe_transaccion'], 
+            $_POST['Cargo_fijo'], 
+            $_POST['Mora'],
+            $_POST['Total_deuda'], 
+            $_POST['Comision'], 
+            $_POST['Total_pagar'],
+            $_POST['idEmpresa'],
+            $_POST['idAgente'], 
+            $_POST['idTipoTransaccion'], 
+            $_POST['idCuenta']
+        );
+        $Voucher->editar();
 
         $this->index(); // Recargo la Pagina
     }
     public function eliminar(){
-        $id = $_GET["id"];
+        $Id_voucher = $_GET["id"];
 
-        $tipo = new Voucher($id);
-        $tipo->eliminar();
+        $cuentasUsuario = new cuentasUsuario($_REQUEST['id']);
+        $cuentasUsuario-> eliminar();
 
         $this->index(); // Recargo la Pagina
     }
@@ -54,10 +67,23 @@ class CtrlVoucher extends Controlador {
         $this->mostrarVista('Voucher/frmNuevo.php',$datos);
     }
     public function guardarNuevo(){
-        $id = $_POST["id"];
-        $tipo =$_POST["tipo"];
-        $miTipo = new Voucher($id,$tipo); 
-        $miTipo->nuevo();
+        $Voucher = new Voucher(
+            $_POST['Id_voucher'], 
+            $_POST['Fecha'], 
+            $_POST['Hora'], 
+            $_POST['Numero_operacion'],
+            $_POST['Importe_transaccion'], 
+            $_POST['Cargo_fijo'], 
+            $_POST['Mora'],
+            $_POST['Total_deuda'], 
+            $_POST['Comision'], 
+            $_POST['Total_pagar'],
+            $_POST['idEmpresa'],
+            $_POST['idAgente'], 
+            $_POST['idTipoTransaccion'], 
+            $_POST['idCuenta']
+        );
+        $Voucher->nuevo();
 
         $this->index(); // Recargo la Pagina
     }

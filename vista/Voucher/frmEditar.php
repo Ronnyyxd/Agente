@@ -8,7 +8,7 @@
 </head>
 <body>
     <h3><?=$encabezado?></h3>
-    <form action="?ctrl=CtrlUsuario&accion=guardarEditar" method="post">
+    <form action="?ctrl=CtrlVoucher&accion=guardarEditar" method="post">
         Id Voucher: <input type="text" name="Id_voucher" readonly
             value="<?=$Voucher['Id_voucher']?>"><br>
         Fecha: <input type="text" name="Fecha"
@@ -39,6 +39,6 @@
             value="<?=$Voucher['idCuenta']?>"> <br>
         <input type="submit" value="Guardar">
     </form>
-    <p><a href="?ctrl=CtrlUsuario">Retornar</a></p>
+    <p><a href="?ctrl=CtrlVoucher">Retornar</a></p>
 </body>
 </html>

@@ -8,7 +8,7 @@
 </head>
 <body>
     <h3><?=$titulo?></h3>
-    <form action="?ctrl=CtrlUsuario&accion=guardarNuevo" method="post">
+    <form action="?ctrl=CtrlVoucher&accion=guardarNuevo" method="post">
         id de Voucher: <input type="text" name="Id_voucher" value=""><br>
         Fecha: <input type="text" name="Fecha" value=""><br>
         Hora: <input type="text" name="Hora" value=""><br>
@@ -25,6 +25,6 @@
         id de Cuenta: <input type="text" name="idCuenta" value=""><br>
         <input type="submit" value="Guardar">
     </form>
-    <p><a href="?ctrl=CtrlUsuario">Retornar</a></p>
+    <p><a href="?ctrl=CtrlVoucher">Retornar</a></p>
 </body>
 </html>
