@@ -35,9 +35,9 @@ class CtrlcuentasUsuario extends Controlador {
             $_POST['numero'], 
             $_POST['saldo'], 
             $_POST['Id_Usuario'],
-            $_POST['idBanco'],
+            $_POST['idBanco']
         );
-        
+    
         $cuentasUsuario->editar();
 
         $this->index(); // Recargo la Pagina

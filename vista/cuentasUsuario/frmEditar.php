@@ -8,7 +8,7 @@
 </head>
 <body>
     <h3><?=$titulo?></h3>
-    <form action="?ctrl=CtrlcuentasUsuario%accion=guardarEditar" method="post">
+    <form action="?ctrl=CtrlcuentasUsuario&accion=guardarEditar" method="post">
         Id CuentaUsuario: <input type="text" name="idCuenta" readonly
             value="<?=$cuentasUsuario['idCuenta']?>"><br>
         Número de Cuenta: <input type="text" name="numero"
