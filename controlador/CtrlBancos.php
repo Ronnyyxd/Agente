@@ -31,18 +31,20 @@ class CtrlBancos extends Controlador {
         $this->mostrarVista('Bancos/frmEditar.php',$datos);
     }
     public function guardarEditar(){
-        $id = $_POST["id"];
-        $tipo =$_POST["tipo"];
-        $miTipo = new Bancos($id,$tipo); 
-        $miTipo->editar();
+        $Bancos = new Bancos(
+            $_POST['idBanco'], 
+            $_POST['nombre'],
+        );
+
+        $Bancos->editar();
 
         $this->index(); // Recargo la Pagina
     }
     public function eliminar(){
-        $id = $_GET["id"];
+        $idBanco = $_GET["id"];
 
-        $tipo = new Bancos($id);
-        $tipo->eliminar();
+        $Bancos = new Bancos($_REQUEST['id']);
+        $Bancos-> eliminar();
 
         $this->index(); // Recargo la Pagina
     }
@@ -55,10 +57,11 @@ class CtrlBancos extends Controlador {
         $this->mostrarVista('Bancos/frmNuevo.php',$datos);
     }
     public function guardarNuevo(){
-        $id = $_POST["id"];
-        $tipo =$_POST["tipo"];
-        $miTipo = new Bancos($id,$tipo); 
-        $miTipo->nuevo();
+        $Bancos = new Bancos(
+            $_POST['idBanco'], 
+            $_POST['nombre'],
+        );
+        $Bancos->nuevo();
 
         $this->index(); // Recargo la Pagina
     }
