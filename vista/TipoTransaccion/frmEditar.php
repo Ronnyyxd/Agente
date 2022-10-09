@@ -7,7 +7,7 @@
     <title>Editar Tipo de Transacción</title>
 </head>
 <body>
-    <h3><?=$encabezado?></h3>
+    <h3><?=$titulo?></h3>
     <form action="?ctrl=CtrlTipoTransaccion&accion=guardarEditar" method="post">
         Id Tipo de Transacción: <input type="text" name="idTipoTransaccion" readonly
             value="<?=$TipoTransaccion['idTipoTransaccion']?>"><br>

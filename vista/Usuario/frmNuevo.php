@@ -7,7 +7,7 @@
     <title>Nuevo Usuario</title>
 </head>
 <body>
-    <h3><?=$encabezado?></h3>
+    <h3><?=$titulo?></h3>
     <form action="?ctrl=CtrlUsuario&accion=guardarNuevo" method="post">
         id de Usuario: <input type="text" name="Id_Usuario" value=""><br>
         DNI: <input type="text" name="DNI" value=""><br>

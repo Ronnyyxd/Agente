@@ -7,7 +7,7 @@
     <title>Nuevo Voucher</title>
 </head>
 <body>
-    <h3><?=$encabezado?></h3>
+    <h3><?=$titulo?></h3>
     <form action="?ctrl=CtrlUsuario&accion=guardarNuevo" method="post">
         id de Voucher: <input type="text" name="Id_voucher" value=""><br>
         Fecha: <input type="text" name="Fecha" value=""><br>

@@ -7,7 +7,7 @@
     <title>Editar Cuenta</title>
 </head>
 <body>
-    <h3><?=$encabezado?></h3>
+    <h3><?=$titulo?></h3>
     <form action="?ctrl=CtrlcuentasUsuario%accion=guardarEditar" method="post">
         Id CuentaUsuario: <input type="text" name="idCuenta" readonly
             value="<?=$cuentasUsuario['idCuenta']?>"><br>

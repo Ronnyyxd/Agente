@@ -30,18 +30,23 @@ class CtrlcuentasUsuario extends Controlador {
         $this->mostrarVista('cuentasUsuario/frmEditar.php',$datos);
     }
     public function guardarEditar(){
-        $id = $_POST["id"];
-        $tipo =$_POST["tipo"];
-        $miTipo = new cuentasUsuario($id,$tipo); 
-        $miTipo->editar();
+        $cuentasUsuario = new cuentasUsuario(
+            $_POST['idCuenta'], 
+            $_POST['numero'], 
+            $_POST['saldo'], 
+            $_POST['Id_Usuario'],
+            $_POST['idBanco'],
+        );
+        
+        $cuentasUsuario->editar();
 
         $this->index(); // Recargo la Pagina
     }
     public function eliminar(){
-        $id = $_GET["id"];
+        $idCuenta = $_GET["id"];
 
-        $tipo = new cuentasUsuario($id);
-        $tipo->eliminar();
+        $cuentasUsuario = new cuentasUsuario($_REQUEST['id']);
+        $cuentasUsuario-> eliminar();
 
         $this->index(); // Recargo la Pagina
     }
@@ -54,10 +59,14 @@ class CtrlcuentasUsuario extends Controlador {
         $this->mostrarVista('cuentasUsuario/frmNuevo.php',$datos);
     }
     public function guardarNuevo(){
-        $id = $_POST["id"];
-        $tipo =$_POST["tipo"];
-        $miTipo = new cuentasUsuario($id,$tipo); 
-        $miTipo->nuevo();
+        $cuentasUsuario = new cuentasUsuario(
+            $_POST['idCuenta'], 
+            $_POST['numero'], 
+            $_POST['saldo'], 
+            $_POST['Id_Usuario'],
+            $_POST['idBanco']
+        );
+        $cuentasUsuario->nuevo();
 
         $this->index(); // Recargo la Pagina
     }

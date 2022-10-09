@@ -7,7 +7,7 @@
     <title>Editar Tipo de Usuario</title>
 </head>
 <body>
-    <h3><?=$encabezado?></h3>
+    <h3><?=$titulo?></h3>
     <form action="?ctrl=CtrlTipoUsuario&accion=guardarEditar" method="post">
         Id TipoUsuario: <input type="text" name="idTipoUsuario" readonly
             value="<?=$TipoUsuario['idTipoUsuario']?>"><br>

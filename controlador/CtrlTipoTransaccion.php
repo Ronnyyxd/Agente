@@ -30,18 +30,20 @@ class CtrlTipoTransaccion extends Controlador {
         $this->mostrarVista('TipoTransaccion/frmEditar.php',$datos);
     }
     public function guardarEditar(){
-        $id = $_POST["id"];
-        $tipo =$_POST["tipo"];
-        $miTipo = new TipoTransaccion($id,$tipo); 
-        $miTipo->editar();
+        $TipoTransaccion = new TipoTransaccion(
+            $_POST['idTipoTransaccion'],
+            $_POST['Transaccion']
+        );
+
+        $TipoTransaccion->editar();
 
         $this->index(); // Recargo la Pagina
     }
     public function eliminar(){
-        $id = $_GET["id"];
+        $idTipoTransaccion = $_GET["id"];
 
-        $tipo = new TipoTransaccion($id);
-        $tipo->eliminar();
+        $TipoTransaccion = new TipoTransaccion($_REQUEST['id']);
+        $TipoTransaccion-> eliminar();
 
         $this->index(); // Recargo la Pagina
     }
@@ -54,10 +56,11 @@ class CtrlTipoTransaccion extends Controlador {
         $this->mostrarVista('TipoTransaccion/frmNuevo.php',$datos);
     }
     public function guardarNuevo(){
-        $id = $_POST["id"];
-        $tipo =$_POST["tipo"];
-        $miTipo = new TipoTransaccion($id,$tipo); 
-        $miTipo->nuevo();
+        $TipoTransaccion = new TipoTransaccion(
+            $_POST['idTipoTransaccion'],
+            $_POST['Transaccion']
+        ); 
+        $TipoTransaccion->nuevo();
 
         $this->index(); // Recargo la Pagina
     }

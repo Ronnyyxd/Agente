@@ -30,18 +30,20 @@ class CtrlTipoUsuario extends Controlador {
         $this->mostrarVista('TipoUsuario/frmEditar.php',$datos);
     }
     public function guardarEditar(){
-        $id = $_POST["id"];
-        $tipo =$_POST["tipo"];
-        $miTipo = new TipoUsuario($id,$tipo); 
-        $miTipo->editar();
+        $TipoUsuario = new TipoUsuario(
+            $_POST['idTipoUsuario'], 
+            $_POST['tipo'],
+        );
+
+        $TipoUsuario->editar();
 
         $this->index(); // Recargo la Pagina
     }
     public function eliminar(){
-        $id = $_GET["id"];
+        $idTipoUsuario = $_GET["id"];
 
-        $tipo = new TipoUsuario($id);
-        $tipo->eliminar();
+        $TipoUsuario = new TipoUsuario($_REQUEST['id']);
+        $TipoUsuario-> eliminar();
 
         $this->index(); // Recargo la Pagina
     }
@@ -54,10 +56,11 @@ class CtrlTipoUsuario extends Controlador {
         $this->mostrarVista('TipoUsuario/frmNuevo.php',$datos);
     }
     public function guardarNuevo(){
-        $id = $_POST["idTipoUsuario "];
-        $tipo =$_POST["tipo"];
-        $miTipo = new TipoUsuario($id,$tipo); 
-        $miTipo->nuevo();
+        $TipoUsuario = new TipoUsuario(
+            $_POST['idTipoUsuario'], 
+            $_POST['tipo'],
+        );
+        $TipoUsuario->nuevo();
 
         $this->index(); // Recargo la Pagina
     }

@@ -7,7 +7,7 @@
     <title>Nuevo TipoTransaccion</title>
 </head>
 <body>
-    <h3><?=$encabezado?></h3>
+    <h3><?=$titulo?></h3>
     <form action="?ctrl=CtrlTipoTransaccion&accion=guardarNuevo" method="post">
         id de Tipo Transaccion : <input type="text" name="idTipoTransaccion" value=""><br>
         Transaccion: <input type="text" name="Transaccion" value=""><br>
