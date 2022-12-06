@@ -1,67 +1,73 @@
 <?php
-require_once SYS . DIRECTORY_SEPARATOR . 'Controlador.php';
-require_once MOD .DIRECTORY_SEPARATOR . 'TipoTransaccion.php';
+require_once SYS . DIRECTORY_SEPARATOR . 'controlador.php';
+require_once MOD . DIRECTORY_SEPARATOR . 'TipoTransaccion.php';
+
+require_once REC . DIRECTORY_SEPARATOR . 'Libreria.php';
+
 /*
-* Clase CtrlcuentasUsuario
+* Clase CtrlPrincipal
 */
 class CtrlTipoTransaccion extends Controlador {
-    
-    public function index(){
-        $tipo = new TipoTransaccion();
+    public function index($msg=array('titulo'=>'','cuerpo'=>'')){
+        $tipo = new TipoTransaccion ();
         $misTipos = $tipo->leer();
-        
-        $datos = array(
-            'encabezado'=>"Tipo de Transaccion",
-            'TipoTransaccion'=>$misTipos
+        # var_dump($misTipos);exit();
+        $menu= Libreria::getMenu();
+        $migas = array(
+            '?'=>'Inicio',
         );
-        
-        $this->mostrarVista('TipoTransaccion/mostrar.php',$datos);
+
+        $datos = array(
+            'titulo'=>"Tipo de Transacción",
+            'contenido'=>Vista::mostrar('TipoTransaccion/mostrar.php',$misTipos,true),
+            'menu'=>$menu,
+            'migas'=>$migas,
+            'msg'=>$msg
+        );
+    
+        $this->mostrarVista('template.php',$datos);
         
     }
+
     public function editar(){
         $id = $_GET["id"];
-        $tipo = new TipoTransaccion($id);
+        $tipo = new TipoTransaccion ($id);
         $miTipo = $tipo->leerUno();
         $datos = array(
-            'titulo'=>"Editando Tipos de transaccion: " . $id,
-            'TipoTransaccion'=>$miTipo[0]
+            'titulo'=>"Editar : " .  $id,
+            'TipoTransaccion'=>$miTipo
         );
         
         $this->mostrarVista('TipoTransaccion/frmEditar.php',$datos);
     }
     public function guardarEditar(){
-        $TipoTransaccion = new TipoTransaccion(
-            $_POST['idTipoTransaccion'],
-            $_POST['Transaccion']
-        );
-
-        $TipoTransaccion->editar();
+        $idTipoTransaccion = $_POST["idTipoTransaccion"];
+        $Transaccion =$_POST["Transaccion"];
+        $miTipo = new TipoTransaccion ($idTipoTransaccion,$Transaccion); 
+        $miTipo->editar();
 
         $this->index(); // Recargo la Pagina
     }
     public function eliminar(){
         $idTipoTransaccion = $_GET["id"];
-
-        $TipoTransaccion = new TipoTransaccion($_REQUEST['id']);
-        $TipoTransaccion-> eliminar();
+        $TipoTransaccion = new TipoTransaccion ($idTipoTransaccion);
+        $TipoTransaccion->eliminar();
 
         $this->index(); // Recargo la Pagina
     }
     public function nuevo(){
         $datos = array(
-            'titulo'=>"Nuevo Tipo de transaccion: ",
+            'titulo'=>"Nuevo Transaccion: ",
            
         );
         
         $this->mostrarVista('TipoTransaccion/frmNuevo.php',$datos);
     }
     public function guardarNuevo(){
-        $TipoTransaccion = new TipoTransaccion(
-            $_POST['idTipoTransaccion'],
-            $_POST['Transaccion']
-        ); 
-        $TipoTransaccion->nuevo();
-
+        $idTipoTransaccion = $_POST["idTipoTransaccion"];
+        $Transaccion =$_POST["Transaccion"];
+        $miTipo = new TipoTransaccion ($idTipoTransaccion,$Transaccion);
+        $miTipo->nuevo();
         $this->index(); // Recargo la Pagina
     }
 }

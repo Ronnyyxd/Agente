@@ -1,49 +1,57 @@
 <?php
-require_once SYS . DIRECTORY_SEPARATOR . 'Controlador.php';
-require_once MOD .DIRECTORY_SEPARATOR . 'TipoUsuario.php';
+require_once SYS . DIRECTORY_SEPARATOR . 'controlador.php';
+require_once MOD . DIRECTORY_SEPARATOR . 'TipoUsuario.php';
+
+require_once REC . DIRECTORY_SEPARATOR . 'Libreria.php';
+
 /*
-* Clase CtrlcuentasUsuario
+* Clase CtrlPrincipal
 */
 class CtrlTipoUsuario extends Controlador {
-    
-    public function index(){
-        $tipo = new TipoUsuario();
+    public function index($msg=array('titulo'=>'','cuerpo'=>'')){
+        $tipo = new TipoUsuario ();
         $misTipos = $tipo->leer();
-        
-        $datos = array(
-            'encabezado'=>"Tipo de Usuario",
-            'TipoUsuario'=>$misTipos
+        # var_dump($misTipos);exit();
+        $menu= Libreria::getMenu();
+        $migas = array(
+            '?'=>'Inicio',
         );
-        
-        $this->mostrarVista('TipoUsuario/mostrar.php',$datos);
+
+        $datos = array(
+            'titulo'=>"Tipos de Usuario",
+            'contenido'=>Vista::mostrar('TipoUsuario/mostrar.php',$misTipos,true),
+            'menu'=>$menu,
+            'migas'=>$migas,
+            'msg'=>$msg
+        );
+    
+        $this->mostrarVista('template.php',$datos);
         
     }
+
     public function editar(){
         $id = $_GET["id"];
-        $tipo = new TipoUsuario($id);
+        $tipo = new TipoUsuario ($id);
         $miTipo = $tipo->leerUno();
         $datos = array(
-            'titulo'=>"Editando Tipo de Usuario: " . $id,
-            'TipoUsuario'=>$miTipo[0]
+            'titulo'=>"Editar Tipo de Usuario : " .  $id,
+            'TipoUsuario'=>$miTipo
         );
         
         $this->mostrarVista('TipoUsuario/frmEditar.php',$datos);
     }
     public function guardarEditar(){
-        $TipoUsuario = new TipoUsuario(
-            $_POST['idTipoUsuario'], 
-            $_POST['tipo'],
-        );
-
-        $TipoUsuario->editar();
+        $idTipoUsuario = $_POST["idTipoUsuario"];
+        $tipo =$_POST["tipo"];
+        $miTipo = new TipoUsuario ($idTipoUsuario,$tipo); 
+        $miTipo->editar();
 
         $this->index(); // Recargo la Pagina
     }
     public function eliminar(){
         $idTipoUsuario = $_GET["id"];
-
-        $TipoUsuario = new TipoUsuario($_REQUEST['id']);
-        $TipoUsuario-> eliminar();
+        $TipoUsuario = new TipoUsuario ($idTipoUsuario);
+        $TipoUsuario->eliminar();
 
         $this->index(); // Recargo la Pagina
     }
@@ -56,12 +64,10 @@ class CtrlTipoUsuario extends Controlador {
         $this->mostrarVista('TipoUsuario/frmNuevo.php',$datos);
     }
     public function guardarNuevo(){
-        $TipoUsuario = new TipoUsuario(
-            $_POST['idTipoUsuario'], 
-            $_POST['tipo'],
-        );
-        $TipoUsuario->nuevo();
-
+        $idTipoUsuario = $_POST["idTipoUsuario"];
+        $tipo =$_POST["tipo"];
+        $miTipo = new TipoUsuario ($idTipoUsuario,$tipo); 
+        $miTipo->nuevo();
         $this->index(); // Recargo la Pagina
     }
 }

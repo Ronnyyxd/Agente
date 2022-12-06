@@ -1,49 +1,58 @@
 <?php
-require_once SYS . DIRECTORY_SEPARATOR . 'Controlador.php';
-require_once MOD .DIRECTORY_SEPARATOR . 'Agente.php';
+require_once SYS . DIRECTORY_SEPARATOR . 'controlador.php';
+require_once MOD . DIRECTORY_SEPARATOR . 'Agente.php';
+
+require_once REC . DIRECTORY_SEPARATOR . 'Libreria.php';
+
 /*
-* Clase CtrlTipoPersona
+* Clase CtrlPrincipal
 */
 class CtrlAgente extends Controlador {
-    
-    public function index(){
-        $Agente = new Agente();
+    public function index($msg=array('titulo'=>'','cuerpo'=>'')){
+        $Agente = new Agente ();
         $misTipos = $Agente->leer();
-        
-        $datos = array(
-            'encabezado'=>"Listado de Agentes",
-            'Agente'=>$misTipos
+        # var_dump($misTipos);exit();
+        $menu= Libreria::getMenu();
+        $migas = array(
+            '?'=>'Inicio',
         );
-        
-        $this->mostrarVista('Agente/mostrar.php',$datos);
+
+        $datos = array(
+            'titulo'=>"Listado de Agentes",
+            'contenido'=>Vista::mostrar('Agente/mostrar.php',$misTipos,true),
+            'menu'=>$menu,
+            'migas'=>$migas,
+            'msg'=>$msg
+        );
+    
+        $this->mostrarVista('template.php',$datos);
         
     }
+
     public function editar(){
-        $idAgente = $_GET["id"];
-        $Agente = new Agente($idAgente);
+        $idAgente = $_GET["idAgente"];
+        $Agente = new Agente ($idAgente);
         $miTipo = $Agente->leerUno();
         $datos = array(
-            'titulo'=>"Editando Tipos de Agente: " . $idAgente,
-            'Agente'=>$miTipo[0]
+            'titulo'=>"Editar : " .  $idAgente,
+            'Agente'=>$miTipo
         );
         
         $this->mostrarVista('Agente/frmEditar.php',$datos);
     }
     public function guardarEditar(){
-        $Agente = new Agente(
-            $_POST['idAgente'], 
-            $_POST['NombreAgente'], 
-            $_POST['direccion'], 
-            $_POST['codigoEquipo']
-        );
-        $Agente->editar();
+        $idAgente = $_POST["idAgente"];
+        $NombreAgente =$_POST["NombreAgente"];
+        $direccion =$_POST["direccion"];
+        $codigoEquipo =$_POST["codigoEquipo"];
+        $miTipo = new Agente ($idAgente,$NombreAgente,$direccion,$codigoEquipo); 
+        $miTipo->editar();
 
         $this->index(); // Recargo la Pagina
     }
     public function eliminar(){
         $idAgente = $_GET["id"];
-
-        $Agente = new Agente($idAgente);
+        $Agente = new Agente ($idAgente);
         $Agente->eliminar();
 
         $this->index(); // Recargo la Pagina
@@ -57,15 +66,12 @@ class CtrlAgente extends Controlador {
         $this->mostrarVista('Agente/frmNuevo.php',$datos);
     }
     public function guardarNuevo(){
-        $Agente = new Agente(
-            $_POST['idAgente'], 
-            $_POST['NombreAgente'], 
-            $_POST['direccion'], 
-            $_POST['codigoEquipo']
-        );
-        $Agente->nuevo();
-        
-
+        $idAgente  = $_POST["idAgente"];
+        $NombreAgente =$_POST["NombreAgente"];
+        $direccion =$_POST["direccion"];
+        $codigoEquipo =$_POST["codigoEquipo"];
+        $miTipo = new Agente ($idAgente,$NombreAgente,$direccion,$codigoEquipo); 
+        $miTipo->nuevo();
         $this->index(); // Recargo la Pagina
     }
 }

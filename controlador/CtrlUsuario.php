@@ -1,70 +1,79 @@
 <?php
 require_once SYS . DIRECTORY_SEPARATOR . 'Controlador.php';
 require_once MOD .DIRECTORY_SEPARATOR . 'Usuario.php';
+require_once REC . DIRECTORY_SEPARATOR . 'Libreria.php';
 /*
-* Clase CtrlcuentasUsuario
+* Clase CtrlUsuario
 */
 class CtrlUsuario extends Controlador {
     
-    public function index(){
-        $tipo = new Usuario();
-        $misTipos = $tipo->leer();
+    public function index($msg=null){
+        $menu= Libreria::getMenu();
         
+        $obj = new Usuario();
+        $resultado = $obj->leer();
+        $msg = $msg==null?$this->_getMsg():$msg;
         $datos = array(
-            'encabezado'=>"Usuario",
-            'Usuario'=>$misTipos
+            'titulo'=>"Usuarios",
+            'contenido'=>Vista::mostrar('cliente/mostrar.php',$resultado,true),
+            'menu'=>$menu,
+            'migas'=>$this->_getMigas(),
+            'msg'=>$msg
         );
         
-        $this->mostrarVista('Usuario/mostrar.php',$datos);
-        
+        $this->mostrarVista('template.php',$datos);
     }
-    public function editar(){
-        $id = $_GET["id"];
-        $tipo = new Usuario($id);
-        $miTipo = $tipo->leerUno();
+    public function validar(){
+        if (isset($_POST['usuario']) && isset($_POST['clave'])) {
+            $obj = new Usuario();
+            $obj->setLogin($_POST['usuario']);
+            $obj->setClave($_POST['clave']);
+            $datos=$obj->validarUsuario();
+            // var_dump($datos);exit();
+            if (isset($datos['data']))
+                if($datos['data']!=null){
+                    $_SESSION['nombre']=$datos['data'][0]['nombre'];
+                    $_SESSION['email']=$datos['data'][0]['email'];
+                    $_SESSION['id']=$datos['data'][0]['idusuario'];
+                    $_SESSION['idperfil']=$datos['data'][0]['idperfil'];
+                    // echo $_SESSION['nombre'];
+                }
+            
+        }
+        header("Location: ?");
+        exit();
+    }
+    public function cerrarSesion()
+    {
+        session_destroy();
+        header("Location: ?");
+        exit();
+    }
+    public function verSaldo()
+    {
+        $obj = new Usuario($_SESSION['id']);
+        $data= $obj->getSaldo();
+        // var_dump($data);exit();
+
+        
+        $menu= Libreria::getMenu($_SESSION['idperfil']);
+        $migas = array(
+            '?'=>'Inicio',
+        );
+               
+
         $datos = array(
-            'titulo'=>"Editar Usuario: " . $id,
-            'Usuario'=>$miTipo[0]
+            'titulo'=>"Saldos",
+            'contenido'=>Vista::mostrar('cuentasUsuario/saldo.php',$data,true),
+            'menu'=>$menu,
+            'migas'=>$migas,
+            'msg'=>array(
+                    'titulo'=>'',
+                    'cuerpo'=>''
+                )
         );
         
-        $this->mostrarVista('Usuario/frmEditar.php',$datos);
-    }
-    public function guardarEditar(){
-        $Usuario = new Usuario(
-            $_POST['Id_Usuario'], 
-            $_POST['DNI'],
-            $_POST['nombre'], 
-            $_POST['idTipoUsuario']
-        ); 
-        $Usuario->editar();
-
-        $this->index(); // Recargo la Pagina
-    }
-    public function eliminar(){
-        $Id_Usuario = $_GET["id"];
-
-        $Usuario = new Usuario($_REQUEST['id']);
-        $Usuario-> eliminar();
-
-        $this->index(); // Recargo la Pagina
-    }
-    public function nuevo(){
-        $datos = array(
-            'titulo'=>"Nuevo Usuario: ",
+        $this->mostrarVista('template.php',$datos);
            
-        );
-        
-        $this->mostrarVista('Usuario/frmNuevo.php',$datos);
-    }
-    public function guardarNuevo(){
-        $Usuario = new Usuario(
-            $_POST['Id_Usuario'], 
-            $_POST['DNI'],
-            $_POST['nombre'], 
-            $_POST['idTipoUsuario']
-        );
-        $Usuario->nuevo();
-
-        $this->index(); // Recargo la Pagina
     }
 }

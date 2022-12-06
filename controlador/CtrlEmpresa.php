@@ -1,51 +1,60 @@
 <?php
-require_once SYS . DIRECTORY_SEPARATOR . 'Controlador.php';
-require_once MOD .DIRECTORY_SEPARATOR . 'Empresa.php';
+require_once SYS . DIRECTORY_SEPARATOR . 'controlador.php';
+require_once MOD . DIRECTORY_SEPARATOR . 'Empresa.php';
+
+require_once REC . DIRECTORY_SEPARATOR . 'Libreria.php';
+
 /*
-* Clase CtrlcuentasUsuario
+* Clase CtrlPrincipal
 */
 class CtrlEmpresa extends Controlador {
-    
-    public function index(){
-        $tipo = new Empresa();
+    public function index($msg=array('titulo'=>'','cuerpo'=>'')){
+        $tipo = new Empresa ();
         $misTipos = $tipo->leer();
-        
-        $datos = array(
-            'encabezado'=>"Empresa",
-            'Empresa'=>$misTipos
+        # var_dump($misTipos);exit();
+        $menu= Libreria::getMenu();
+        $migas = array(
+            '?'=>'Inicio',
         );
-        
-        $this->mostrarVista('Empresa/mostrar.php',$datos);
+
+        $datos = array(
+            'titulo'=>"Listado de Empresas",
+            'contenido'=>Vista::mostrar('Empresa/mostrar.php',$misTipos,true),
+            'menu'=>$menu,
+            'migas'=>$migas,
+            'msg'=>$msg
+        );
+    
+        $this->mostrarVista('template.php',$datos);
         
     }
+
     public function editar(){
         $id = $_GET["id"];
-        $tipo = new Empresa($id);
+        $tipo = new Empresa ($id);
         $miTipo = $tipo->leerUno();
         $datos = array(
-            'titulo'=>"Editar Empresa: " . $id,
-            'Empresa'=>$miTipo[0]
+            'titulo'=>"Editar Empresa : " .  $id,
+            'Empresa'=>$miTipo
         );
         
         $this->mostrarVista('Empresa/frmEditar.php',$datos);
     }
     public function guardarEditar(){
-        $Empresa = new Empresa(
-            $_POST['idEmpresa'], 
-            $_POST['Giro_rubro'], 
-            $_POST['nroCuenta'], 
-            $_POST['Nombre'],
-            $_POST['codigo'],
-        );
-        $Empresa->editar();
+        $idEmpresa = $_POST["idEmpresa"];
+        $Giro_rubro =$_POST["Giro_rubro"];
+        $nroCuenta =$_POST["nroCuenta"];
+        $Nombre =$_POST["Nombre"];
+        $codigo =$_POST["codigo"];
+        $miTipo = new Empresa ($idEmpresa,$Giro_rubro,$nroCuenta,$Nombre,$codigo); 
+        $miTipo->editar();
 
         $this->index(); // Recargo la Pagina
     }
     public function eliminar(){
         $idEmpresa = $_GET["id"];
-
-        $Empresa = new Empresa($_REQUEST['id']);
-        $Empresa-> eliminar();
+        $Empresa = new Empresa ($idEmpresa);
+        $Empresa->eliminar();
 
         $this->index(); // Recargo la Pagina
     }
@@ -58,15 +67,13 @@ class CtrlEmpresa extends Controlador {
         $this->mostrarVista('Empresa/frmNuevo.php',$datos);
     }
     public function guardarNuevo(){
-        $Empresa = new Empresa(
-            $_POST['idEmpresa'], 
-            $_POST['Giro_rubro'], 
-            $_POST['nroCuenta'], 
-            $_POST['Nombre'],
-            $_POST['codigo'],
-        ); 
-        $Empresa->nuevo();
-
+        $idEmpresa = $_POST["idEmpresa"];
+        $Giro_rubro =$_POST["Giro_rubro"];
+        $nroCuenta =$_POST["nroCuenta"];
+        $Nombre =$_POST["Nombre"];
+        $codigo =$_POST["codigo"];
+        $miTipo = new Empresa ($idEmpresa,$Giro_rubro,$nroCuenta,$Nombre,$codigo); 
+        $miTipo->nuevo();
         $this->index(); // Recargo la Pagina
     }
 }
