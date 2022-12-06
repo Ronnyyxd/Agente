@@ -14,7 +14,7 @@
     <ul>
         <li><a href="?ctrl=CtrlAgente">Agente</a></li>
         <li><a href="?ctrl=CtrlBancos">Bancos</a></li>
-        <li><a href="?ctrl=CtrlcuentasUsuario">Cuentas de Usuario</a></li>
+        <li><a href="?ctrl=CtrlcuentasUsuario">Cuentas de Usuariossaa</a></li>
         <li><a href="?ctrl=CtrlEmpresa">Empresa</a></li>
         <li><a href="?ctrl=CtrlTipoTransaccion">Tipo de Transaccion </a></li>
         <li><a href="?ctrl=CtrlTipoUsuario">Tipo Usuario</a></li>
