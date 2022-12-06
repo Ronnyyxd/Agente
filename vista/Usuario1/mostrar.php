@@ -11,7 +11,7 @@
                     <th>Id Usuario:</th>
                     <th>DNI</th>
                     <th>Nombre Usuario:</th>
-                    <th>Id  TipoUsuario</th>
+                    <th>Id  Tipo de Usuario</th>
                 </tr>
             </thead>
             <tbody>
