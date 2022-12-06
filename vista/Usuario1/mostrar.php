@@ -1,27 +1,31 @@
 <section class="content">
     <div class="container-fluid">
         
-        <a href="?ctrl=CtrlTipoUsuario&accion=nuevo" class="btn btn-primary">
-            <i class="bi bi-plus-circle"></i> Nuevo Tipo de Usuario</a>
+        <a href="?ctrl=CtrlUsuario1&accion=nuevo" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Nuevo Usuario</a>
             <a href="index.php" class="btn btn-primary">
             <i class="bi bi-plus-circle"></i> Retornar</a>
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Id TipoUsuario:</th>
-                    <th>Tipo</th>
+                    <th>Id Usuario:</th>
+                    <th>DNI</th>
+                    <th>Nombre Usuario:</th>
+                    <th>Id  TipoUsuario</th>
                 </tr>
             </thead>
             <tbody>
             <?php foreach ($data as $a) { ?>
                 <tr>
+                        <td><?=$a['Id_Usuario']?></td>
+                        <td><?=$a['DNI']?></td>
+                        <td><?=$a['nombre']?></td>
                         <td><?=$a['idTipoUsuario']?></td>
-                        <td><?=$a['tipo']?></td>
                     <td>
-                        <a href="?ctrl=CtrlTipoUsuario&accion=editar&id=<?=$a['idTipoUsuario']?>">
+                        <a href="?ctrl=CtrlUsuario1&accion=editar&idAgente=<?=$a['Id_Usuario']?>">
                             <i class="bi bi-pencil-square"></i> Editar</a>
                         / 
-                        <a data-id="<?=$a['idTipoUsuario']?>" data-nombre="<?=$a['tipo']?>" class="eliminar" href="#">
+                        <a data-id="<?=$a['Id_Usuario']?>" data-nombre="<?=$a['DNI']?>" class="eliminar" href="#">
                             <i class="bi bi-trash"></i>  Eliminar</a>
                     </td>
                 </tr>

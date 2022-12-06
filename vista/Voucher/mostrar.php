@@ -1,62 +1,87 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Voucher </title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-    <style>
-        table,th,td  {
-            border : 0.05vw solid black;
-            border-collapse: collapse;
-            padding: 0.5rem;
-        }
-    </style>
-</head>
+<section class="content">
+    <div class="container-fluid">
+        
+        <a href="?ctrl=CtrlVoucher&accion=nuevo" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Nuevo Voucher </a>
+            <a href="index.php" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Retornar</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id Voucher:</th>
+                    <th>Fecha</th>
+                    <th>Hora:</th>
+                    <th>N° de Operacion</th>
+                    <th>Importe_transaccion:</th>
+                    <th>Cargo fijo</th>
+                    <th>Mora :</th>
+                    <th>Total deuda</th>
+                    <th>Comision:</th>
+                    <th>Total a pagar</th>
+                    <th>Id Empresa:</th>
+                    <th>Id  Agente</th>
+                    <th>Id Tipo Transaccion:</th>
+                    <th>Id Cuenta</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($data as $a) { ?>
+                <tr>
+                    <td><?=$a['Id_voucher']?></td>
+                    <td><?=$a['Fecha']?></td>
+                    <td><?=$a['Hora']?></td>
+                    <td><?=$a['Numero_operacion']?></td>
+                    <td><?=$a['Importe_transaccion']?></td>
+                    <td><?=$a['Cargo_fijo']?></td>
+                    <td><?=$a['Mora']?></td>
+                    <td><?=$a['Total_deuda']?></td>
+                    <td><?=$a['Comision']?></td>
+                    <td><?=$a['Total_pagar']?></td>
+                    <td><?=$a['idEmpresa']?></td>
+                    <td><?=$a['idAgente']?></td>
+                    <td><?=$a['idTipoTransaccion']?></td>
+                    <td><?=$a['idCuenta']?></td>
+                    <td>
+                        <a href="?ctrl=CtrlVoucher&accion=editar&id=<?=$a['Id_voucher']?>">
+                            <i class="bi bi-pencil-square"></i> Editar</a>
+                        / 
+                        <a data-id="<?=$a['Id_voucher']?>" data-nombre="<?=$a['Fecha']?>" class="eliminar" href="#">
+                            <i class="bi bi-trash"></i>  Eliminar</a>
+                    </td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+    </div>
+</section>
 
-<body>
-    <h1><?=$encabezado?></h1>
-    <a class="btn btn-primary" href="?ctrl=CtrlVoucher&accion=nuevo"role="button">Nuevo Voucher</a>
-    <table>
-        <tr>
-            <th>Id Voucher:</th>
-            <th>Fecha</th>
-            <th>Hora:</th>
-            <th>N° de Operacion</th>
-            <th>Importe_transaccion:</th>
-            <th>Cargo fijo</th>
-            <th>Mora :</th>
-            <th>Total deuda</th>
-            <th>Comision:</th>
-            <th>Total a pagar</th>
-            <th>Id Empresa:</th>
-            <th>Id  Agente</th>
-            <th>Id Tipo Transaccion:</th>
-            <th>Id Cuenta</th>
-        </tr> <?php 
-        if (is_array($Voucher))
-        foreach ($Voucher as $c) { ?> <tr>
-            <td><?=$c['Id_voucher']?></td>
-            <td><?=$c['Fecha']?></td>
-            <td><?=$c['Hora']?></td>
-            <td><?=$c['Numero_operacion']?></td>
-            <td><?=$c['Importe_transaccion']?></td>
-            <td><?=$c['Cargo_fijo']?></td>
-            <td><?=$c['Mora']?></td>
-            <td><?=$c['Total_deuda']?></td>
-            <td><?=$c['Comision']?></td>
-            <td><?=$c['Total_pagar']?></td>
-            <td><?=$c['idEmpresa']?></td>
-            <td><?=$c['idAgente']?></td>
-            <td><?=$c['idTipoTransaccion']?></td>
-            <td><?=$c['idCuenta']?></td>
-            <td> <a href="?ctrl=CtrlVoucher&accion=editar&id=<?=$c['Id_voucher']?>">Editar</a> / <a
-            href="?ctrl=CtrlVoucher&accion=eliminar&id=<?=$c['Id_voucher']?>">Eliminar</a> </td>
-        </tr> <?php } ?>
-        <a class="btn btn-primary" href="/Agente2"role="button">Atrás</a>
-    </table>
-</body>
+<div class="modal fade" id="modal-eliminar">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Eliminando registro</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="login-box-msg">¿Estas seguiro que deseas eliminar el registro</p>
+                <p class="reg-eliminacion"></p>
+                <div class="row">
+                <!-- /.col -->
+                    <div class="col-4">
+                        <a  class="btn btn-primary btn-block" id="btn-confirmar" href="">Si</a>
+                    </div>
+                    <div class="col-4">
+                        <button type="button" data-dismiss="modal" class="btn btn-secundary btn-block">No</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+                
 
-</html>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

@@ -4,28 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuevo Agente</title>
+    <title>Nuevo Usuario</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 </head>
 <body>
     <h3><?=$titulo?></h3>
-    <form action="?ctrl=CtrlAgente&accion=guardarNuevo" method="post">
+    <form action="?ctrl=CtrlUsuario1&accion=guardarNuevo" method="post">
         <div class="input-group mb-3">
-            <span class="input-group-text">id de Agente : </span>
-            <input type="text" class="form-control" placeholder="idAgente:"  name="idAgente" value="">
+            <span class="input-group-text">id de Usuario : </span>
+            <input type="text" class="form-control" placeholder="Id_Usuario:"  name="Id_Usuario" value="">
         </div>
         <div class="input-group mb-3">
-            <span class="input-group-text">Nombre de Agente: </span>
-            <input type="text" class="form-control" placeholder="NombreAgente"  name="NombreAgente" value="">
+            <span class="input-group-text"> DNI: </span>
+            <input type="text" class="form-control" placeholder="DNI"  name="DNI" value="">
         </div>
         <div class="input-group mb-3">
-            <span class="input-group-text">Dirección: </span>
-            <input type="text" class="form-control" placeholder="direccion"  name="direccion" value="">
+            <span class="input-group-text">Nombre: </span>
+            <input type="text" class="form-control" placeholder="nombre"  name="nombre" value="">
         </div>
         <div class="input-group mb-3">
-            <span class="input-group-text">Código Equipo: </span>
-            <input type="text" class="form-control" placeholder="codigoEquipo"  name="codigoEquipo" value="">
+            <span class="input-group-text"> id Tipo Usuario: </span>
+            <input type="text" class="form-control" placeholder="idTipoUsuario"  name="idTipoUsuario" value="">
         </div>
     
         <div class="input-group mb-3">

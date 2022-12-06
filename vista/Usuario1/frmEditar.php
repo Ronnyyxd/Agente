@@ -8,7 +8,7 @@
 </head>
 <body>
     <h3><?=$titulo?></h3>
-    <form action="?ctrl=CtrlUsuario&accion=guardarEditar" method="post">
+    <form action="?ctrl=CtrlUsuario1&accion=guardarEditar" method="post">
         Id Usuario : <input type="text" name="Id_Usuario" readonly
             value="<?=$Usuario['Id_Usuario']?>"><br>
         DNI  : <input type="text" name="DNI"
@@ -19,6 +19,6 @@
             value="<?=$Usuario['idTipoUsuario']?>"><br>
         <input type="submit" value="Guardar">
     </form>
-    <p><a href="?ctrl=CtrlUsuario">Retornar</a></p>
+    <p><a href="?ctrl=CtrlUsuario1">Retornar</a></p>
 </body>
 </html>

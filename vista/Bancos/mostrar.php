@@ -1,39 +1,63 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Banco </title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<section class="content">
+    <div class="container-fluid">
+        
+        <a href="?ctrl=CtrlBancos&accion=nuevo" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Nuevo Banco</a>
+            <a href="index.php" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Retornar</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id de Banco</th>
+                    <th> Nombre de Banco</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($data as $a) { ?>
+                <tr>
+                    <td><?=$a['idBanco']?></td>
+                    <td><?=$a['nombre']?></td>
+                    <td>
+                        <a href="?ctrl=CtrlBancos&accion=editar&id=<?=$a['idBanco']?>">
+                            <i class="bi bi-pencil-square"></i> Editar</a>
+                        / 
+                        <a data-id="<?=$a['idBanco']?>" data-nombre="<?=$a['nombre']?>" class="eliminar" href="#">
+                            <i class="bi bi-trash"></i>  Eliminar</a>
+                    </td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+    </div>
+</section>
 
-    <style>
-        table,th,td  {
-            border : 0.05vw solid black;
-            border-collapse: collapse;
-            padding: 0.5rem;
-        }
-    </style>
-</head>
+<div class="modal fade" id="modal-eliminar">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Eliminando registro</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="login-box-msg">¿Estas seguiro que deseas eliminar el registro</p>
+                <p class="reg-eliminacion"></p>
+                <div class="row">
+                <!-- /.col -->
+                    <div class="col-4">
+                        <a  class="btn btn-primary btn-block" id="btn-confirmar" href="">Si</a>
+                    </div>
+                    <div class="col-4">
+                        <button type="button" data-dismiss="modal" class="btn btn-secundary btn-block">No</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+                
 
-<body>
-    <h1><?=$encabezado?></h1>
-    <a class="btn btn-primary" href="?ctrl=CtrlBancos&accion=nuevo" role="button">Nuevo Banco</a>
-    <table>
-        <tr>
-            <th>Id de Banco</th>
-            <th>Nombre de Banco</th>           
-        </tr> <?php
-            if (is_array($Bancos))
-            foreach ($Bancos as $c) { ?> <tr>
-            <td><?=$c['idBanco']?></td>
-            <td><?=$c['nombre']?></td>
-            <td> <a href="?ctrl=CtrlBancos&accion=editar&id=<?=$c['idBanco']?>">Editar</a> / <a
-            href="?ctrl=CtrlBancos&accion=eliminar&id=<?=$c['idBanco']?>">Eliminar</a> </td>
-        </tr> <?php } ?>
-        <a class="btn btn-primary" href="/Agente2" role="button">Atras</a>
-    </table>
-</body>
-
-</html>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

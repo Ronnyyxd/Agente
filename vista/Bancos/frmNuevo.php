@@ -4,15 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuevo Bancos</title>
+    <title>Nuevo Banco</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 </head>
 <body>
     <h3><?=$titulo?></h3>
     <form action="?ctrl=CtrlBancos&accion=guardarNuevo" method="post">
-        id de Banco : <input type="text" name="idBanco" value=""><br>
-        Nombre de Banco: <input type="text" name="nombre" value=""><br>
-        <input type="submit" value="Guardar">
+        <div class="input-group mb-3">
+            <span class="input-group-text">id de Banco: </span>
+            <input type="text" class="form-control" placeholder="idBanco:"  name="idBanco" value="">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Nombre de Banco: </span>
+            <input type="text" class="form-control" placeholder="nombre"  name="nombre" value="">
+    
+        <div class="input-group mb-3">
+            <button class="btn btn-outline-secondary" type="submit">Guardar</button>
+        </div>
     </form>
-    <p><a href="?ctrl=CtrlBancos">Retornar</a></p>
+    <p><a href="?ctrl=CtrlBancos" class="btn btn-primary"><i class="bi bi-arrow-left"></i> Retornar</a></p>
 </body>
 </html>

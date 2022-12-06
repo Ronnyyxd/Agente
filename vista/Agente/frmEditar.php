@@ -10,13 +10,13 @@
     <h3><?=$titulo?></h3>
     <form action="?ctrl=CtrlAgente&accion=guardarEditar" method="post">
         Id de Agente : <input type="text" name="idAgente" readonly
-            value="<?=$Agente['idAgente']?>"><br>
+            value="<?=$agente['idAgente']?>"><br>
         Nombre de Agente: <input type="text" name="NombreAgente"
-            value="<?=$Agente['NombreAgente']?>"><br>
+            value="<?=$agente['NombreAgente']?>"><br>
         Dirección: <input type="text" name="direccion"
-            value="<?=$Agente['direccion']?>"><br>
+            value="<?=$agente['direccion']?>"><br>
         Código Equipo: <input type="text" name="codigoEquipo"
-            value="<?=$Agente['codigoEquipo']?>"> <br>
+            value="<?=$agente['codigoEquipo']?>"> <br>
         <input type="submit" value="Guardar">
     </form>
     <p><a href="?ctrl=CtrlAgente">Retornar</a></p>

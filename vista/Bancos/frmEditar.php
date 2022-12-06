@@ -10,9 +10,9 @@
     <h3><?=$titulo?></h3>
     <form action="?ctrl=CtrlBancos&accion=guardarEditar" method="post">
         Id de Banco : <input type="text" name="idBanco" readonly
-            value="<?=$Bancos['idBanco']?>"><br>
+            value="<?=$bancos['idBanco']?>"><br>
         Nombre Banco : <input type="text" name="nombre"
-            value="<?=$Bancos['nombre']?>"><br>
+            value="<?=$bancos['nombre']?>"><br>
         <input type="submit" value="Guardar">
     </form>
     <p><a href="?ctrl=CtrlBancos">Retornar</a></p>
