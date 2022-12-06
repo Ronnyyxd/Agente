@@ -3,13 +3,14 @@
 error_reporting (E_ALL | E_STRICT);
 /* RUTAS */
 define('HOME', 'c:\xampp\htdocs');
-define('APP_NAME', 'AGENTE2');
+define('APP_NAME', 'AgenteB');
 define('APP', HOME . DIRECTORY_SEPARATOR . APP_NAME );
+
+define('URL', 'http://localhost');
+define('URL_BASE', URL .'/'.APP_NAME);
 
 /* SISTEMA */ 
 define('SYS', APP . DIRECTORY_SEPARATOR . 'system');
-define('URL', 'http://localhost');
-define('URL_BASE', URL .'/'.APP_NAME);
 
 /* 4 CAPAS  - MVC */ 
 define('VIS', APP . DIRECTORY_SEPARATOR . 'vista');
@@ -17,3 +18,6 @@ define('MOD', APP . DIRECTORY_SEPARATOR . 'modelo');
 define('CON', APP . DIRECTORY_SEPARATOR . 'controlador');
 
 define('PER', APP . DIRECTORY_SEPARATOR . 'persistencia');
+
+/* recursos */
+define('REC', APP . DIRECTORY_SEPARATOR . 'recursos');
